@@ -32,6 +32,14 @@ public class LaunchAnimation {
 		ab.setEcranFin(ListScreen.first());
 		
 		ab.runAnimation();
+		
+		ab.wait(1000);
+		
+		AbstractAnimation ac = new AnimationByColumn();
+		ac.setEcranDeb(ListScreen.first());
+		ac.setEcranFin(ListScreen.smiley());
+		
+		ac.runAnimation();
 
 	}
 
