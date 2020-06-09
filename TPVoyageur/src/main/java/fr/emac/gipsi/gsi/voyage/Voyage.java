@@ -65,6 +65,24 @@ public class Voyage extends AbstractVoyage {
     @Override
     public void lancementSimuler() {
         // TODO Auto-generated method stub
+    	    	    	
+    	int nbrplanete = listPlanete.size();
+    	double[][] distanceplanete = new double[nbrplanete][nbrplanete];
+    	
+    	
+    	for (int i =0; i < nbrplanete; i++) {
+    		for (int j =0; j < nbrplanete; j++) {
+    			double distancex = Math.pow(listPlanete.get(i).getPos().getX() - listPlanete.get(j).getPos().getX(), 2);
+    			double distancey = Math.pow(listPlanete.get(i).getPos().getY() - listPlanete.get(j).getPos().getY(), 2);
+    			distanceplanete[i][j] = Math.sqrt(distancex-distancey);
+    		}
+    	}
+    	   	
+    	
+    	
+    	
+    	
+    	
     	afficheEcran();
     	wait(700);
         getSimulatedvoyageur().goForward();
