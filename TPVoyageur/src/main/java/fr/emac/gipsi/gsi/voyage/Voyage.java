@@ -78,6 +78,5 @@ public class Voyage extends AbstractVoyage {
     	wait(700);
         getSimulatedvoyageur().goForward();
         afficheEcran();
-
     }
 }
