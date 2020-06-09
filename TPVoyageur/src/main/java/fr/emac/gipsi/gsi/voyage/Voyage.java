@@ -65,6 +65,19 @@ public class Voyage extends AbstractVoyage {
     @Override
     public void lancementSimuler() {
         // TODO Auto-generated method stub
+    	afficheEcran();
+    	wait(700);
+        getSimulatedvoyageur().goForward();
         afficheEcran();
+    	wait(700);
+        getSimulatedvoyageur().goForward();
+        afficheEcran();
+    	wait(700);
+        getSimulatedvoyageur().turnRight();
+        afficheEcran();
+    	wait(700);
+        getSimulatedvoyageur().goForward();
+        afficheEcran();
+
     }
 }
