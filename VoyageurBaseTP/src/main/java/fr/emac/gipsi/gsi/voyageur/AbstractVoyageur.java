@@ -27,7 +27,7 @@ public abstract class AbstractVoyageur {
 
     protected int energy = 0;
 
-    protected String direction = "E";
+    protected String direction = "S";
 
     /**
      *

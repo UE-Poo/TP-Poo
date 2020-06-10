@@ -65,7 +65,18 @@ public class Voyage extends AbstractVoyage {
     @Override
     public void lancementSimuler() {
         // TODO Auto-generated method stub
-    	    	    	
+ 
+    	
+    	afficheEcran();
+    	wait(700);
+        goToPlanete(listPlanete.get(0));
+        afficheEcran();
+
+    	
+    	}
+    	
+    private double[][] matricedistance() {
+    	
     	int nbrplanete = listPlanete.size();
     	double[][] distanceplanete = new double[nbrplanete][nbrplanete];
     	
@@ -77,24 +88,167 @@ public class Voyage extends AbstractVoyage {
     			distanceplanete[i][j] = Math.sqrt(distancex-distancey);
     		}
     	}
-    	   	
-    	
-    	
-    	
-    	
-    	
-    	afficheEcran();
-    	wait(700);
-        getSimulatedvoyageur().goForward();
-        afficheEcran();
-    	wait(700);
-        getSimulatedvoyageur().goForward();
-        afficheEcran();
-    	wait(700);
-        getSimulatedvoyageur().turnRight();
-        afficheEcran();
-    	wait(700);
-        getSimulatedvoyageur().goForward();
-        afficheEcran();
+    	return distanceplanete;
     }
+    
+    
+    
+    private  void goToPlanete(Planete p) {
+    	Position positionbody = getSimulatedvoyageur().getPosBody();
+    	Position positionplanete = p.getPos();
+    	
+    	String directionactuelle = getSimulatedvoyageur().getDirection();
+    	
+    	
+    	int xb = positionbody.getX();
+    	int yb = positionbody.getY();
+    	
+    	int px = positionplanete.getX();
+    	int py = positionplanete.getY();
+    	
+    	int a = xb - px;
+ 		int b = yb - py;
+    	
+    	
+    	switch (directionactuelle) {
+    	 	case "N":
+    	 		while (Math.abs(a)>0) {
+    				if (a>0) {
+    					getSimulatedvoyageur().goForward();
+    					afficheEcran();
+    			    	wait(700);
+    					a--;
+    				}
+    				else {
+    					getSimulatedvoyageur().goBackward();
+    					afficheEcran();
+    			    	wait(700);
+    					a++;
+    				}
+    			}
+    	 		getSimulatedvoyageur().turnRight();
+    	 		afficheEcran();
+    	    	wait(700);
+    			while (Math.abs(b)>0) {
+    				if (b>0) {
+    					getSimulatedvoyageur().goBackward();
+    					afficheEcran();
+    			    	wait(700);
+    					b--;
+    				}
+    				else {
+    					getSimulatedvoyageur().goForward();
+    					afficheEcran();
+    			    	wait(700);
+    					b++;
+    				}
+    			}
+    			break;
+    			
+    	 	case "S":
+    	 		while (Math.abs(a)>0) {
+    				if (a>0) {
+    					getSimulatedvoyageur().goBackward();
+    					afficheEcran();
+    			    	wait(700);
+    					a--;
+    				}
+    				else {
+    					getSimulatedvoyageur().goForward();
+    					afficheEcran();
+    			    	wait(700);
+    					a++;
+    				}
+    			}
+    	 		getSimulatedvoyageur().turnRight();
+    	 		afficheEcran();
+    	    	wait(700);
+    			while (Math.abs(b)>0) {
+    				if (b>0) {
+    					getSimulatedvoyageur().goForward();
+    					afficheEcran();
+    			    	wait(700);
+    					b--;
+    				}
+    				else {
+    					getSimulatedvoyageur().goBackward();
+    					afficheEcran();
+    			    	wait(700);
+    					b++;
+    				} 	
+    			}
+    			break;
+    			
+    	 	case "O":
+    	 		while (Math.abs(b)>0) {
+    				if (b>0) {
+    					getSimulatedvoyageur().goForward();
+    					afficheEcran();
+    			    	wait(700);
+    					b--;
+    				}
+    				else {
+    					getSimulatedvoyageur().goBackward();
+    					afficheEcran();
+    			    	wait(700);
+    					b++;
+    				}	
+    			}
+    	 		getSimulatedvoyageur().turnRight();
+    	 		afficheEcran();
+    	    	wait(700);
+    	 		while (Math.abs(a)>0) {
+    				if (a>0) {
+    					getSimulatedvoyageur().goForward();
+    					afficheEcran();
+    			    	wait(700);
+    					a--;
+    				}
+    				else {
+    					getSimulatedvoyageur().goBackward();
+    					afficheEcran();
+    			    	wait(700);
+    					a++;
+    				}
+    			}    			
+    			break;
+    			
+    	 	case "E":
+    	 		while (Math.abs(b)>0) {
+    				if (b>0) {
+    					getSimulatedvoyageur().goBackward();
+    					afficheEcran();
+    			    	wait(700);
+    					b--;
+    				}
+    				else {
+    					getSimulatedvoyageur().goForward();
+    					afficheEcran();
+    			    	wait(700);
+    					b++;
+    				} 	
+    			}
+    	 		getSimulatedvoyageur().turnRight();
+    	 		afficheEcran();
+    	    	wait(700);
+    	 		while (Math.abs(a)>0) {
+    				if (a>0) {
+    					getSimulatedvoyageur().goBackward();
+    					afficheEcran();
+    			    	wait(700);
+    					a--;
+    				}
+    				else {
+    					getSimulatedvoyageur().goForward();
+    					afficheEcran();
+    			    	wait(700);
+    					a++;
+    				}
+    			}    			
+    			break;
+ 			
+    	}
+    	
+    }
+    
 }
