@@ -45,11 +45,11 @@ public class LaunchVoyage {
         
         AbstractVoyageur simulatedVoyageur = new VoyageurSimuler(); // voyageur qui va faire le parcours
         
-        simulatedVoyageur.getPosTete().setX(listPlanete.get(0).getPos().getX());
+        simulatedVoyageur.getPosTete().setX(listPlanete.get(0).getPos().getX()+1);
         simulatedVoyageur.getPosTete().setY(listPlanete.get(0).getPos().getY());
         simulatedVoyageur.getPosBody().setX(listPlanete.get(0).getPos().getX());
-        simulatedVoyageur.getPosBody().setY(listPlanete.get(0).getPos().getY()-1);
-        simulatedVoyageur.setDirection("E");
+        simulatedVoyageur.getPosBody().setY(listPlanete.get(0).getPos().getY());
+        simulatedVoyageur.setDirection("S");
         
         Voyage voyage = new Voyage(listPlanete, simulatedVoyageur);
 

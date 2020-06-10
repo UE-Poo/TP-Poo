@@ -66,11 +66,22 @@ public class Voyage extends AbstractVoyage {
     public void lancementSimuler() {
         // TODO Auto-generated method stub
  
+    	int nbrplanete = listPlanete.size();
+		afficheEcran();
+		
+		int t;
+		int[] trajet;
+		double[][] distanceplanete;
+		
+		distanceplanete = matricedistance();
+		trajet = bestRoad(distanceplanete,0);
+		
     	
-    	afficheEcran();
-    	wait(700);
-        goToPlanete(listPlanete.get(0));
-        afficheEcran();
+    	for (int i =0; i < nbrplanete; i++) {
+    		wait(3000);
+    		goToPlanete(listPlanete.get(trajet[i]));
+    		afficheEcran();
+    	}
 
     	
     	}
@@ -85,13 +96,53 @@ public class Voyage extends AbstractVoyage {
     		for (int j =0; j < nbrplanete; j++) {
     			double distancex = Math.pow(listPlanete.get(i).getPos().getX() - listPlanete.get(j).getPos().getX(), 2);
     			double distancey = Math.pow(listPlanete.get(i).getPos().getY() - listPlanete.get(j).getPos().getY(), 2);
-    			distanceplanete[i][j] = Math.sqrt(distancex-distancey);
+    			distanceplanete[i][j] = Math.sqrt(distancex+distancey);
+    		
     		}
     	}
     	return distanceplanete;
     }
     
     
+       
+    private int[] bestRoad(double[][] distanceplanete, int x) {
+    	
+    	int nbrplanete = listPlanete.size();
+    	int[] bestroad = new int[nbrplanete];
+    	int nouvelleplanete;
+    	bestroad[0] = x;
+    	    	
+    	for (int i =0; i < nbrplanete-1; i++) {
+    		
+    		double a = distanceplanete[x][0];
+    		nouvelleplanete = 0;
+    		
+    		while (a == 0) {
+    			nouvelleplanete++;
+    			a = distanceplanete[x][nouvelleplanete];
+    			System.out.println(a);
+    			System.out.print("------------");
+    		}
+    		
+    		
+    		
+    		for (int j =0; j < nbrplanete; j++) {
+    			if (distanceplanete[x][j]>0 && distanceplanete[x][j]<a) {
+    				
+    				 a = distanceplanete[x][j];
+    				 nouvelleplanete= j;
+    			}
+    		}
+    		for (int h =0; h < nbrplanete; h++) {
+    			distanceplanete[h][x] = 0 ;
+    		}
+    		x = nouvelleplanete;
+    		bestroad[i+1] = x ;
+
+    	}
+    	return bestroad;
+    }
+   
     
     private  void goToPlanete(Planete p) {
     	Position positionbody = getSimulatedvoyageur().getPosBody();
