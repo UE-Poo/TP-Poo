@@ -69,14 +69,13 @@ public class Voyage extends AbstractVoyage {
     	int nbrplanete = listPlanete.size();
 		afficheEcran();
 		
-		int t;
+
 		int[] trajet;
 		double[][] distanceplanete;
 		
 		distanceplanete = matricedistance();
 		trajet = bestRoad(distanceplanete,0);
 		
-    	
     	for (int i =0; i < nbrplanete; i++) {
     		wait(3000);
     		goToPlanete(listPlanete.get(trajet[i]));
@@ -90,6 +89,15 @@ public class Voyage extends AbstractVoyage {
     	
     	int nbrplanete = listPlanete.size();
     	double[][] distanceplanete = new double[nbrplanete][nbrplanete];
+    	int[] listeaccessible;
+    	double[][] nouvelledistance = new double[nbrplanete][nbrplanete];
+    	int k;
+    	
+    	for (int i = 0; i < nouvelledistance.length; i++) {
+    		  for (int j = 0; j < nouvelledistance[i].length; j++) {
+    		    nouvelledistance[i][j] = 0;
+    		  }
+    	}
     	
     	
     	for (int i =0; i < nbrplanete; i++) {
@@ -100,9 +108,48 @@ public class Voyage extends AbstractVoyage {
     		
     		}
     	}
-    	return distanceplanete;
+    	
+    	for (int i = 0; i < distanceplanete.length; i++) {
+    	      double[] ligne = distanceplanete[i];
+    	      for (int j = 0; j < ligne.length; j++) {
+    	        System.out.println(ligne[j]);
+    	      }
+    	}
+    	
+    	for (int i =0; i < nbrplanete; i++) {
+    		listeaccessible = accessibilite(listPlanete.get(i));
+			
+    		for(int j =0; j<listeaccessible.length;j++) {
+    			
+    			k=listeaccessible[j];
+    			nouvelledistance[i][k] = distanceplanete[i][k];
+    			nouvelledistance[k][i] = distanceplanete[i][k];
+    			
+    			
+    		}	
+    	}
+    	return nouvelledistance;
     }
     
+    
+    private int[] accessibilite (Planete p) {
+    	
+    	ArrayList<Planete> Accessibilite = p.getListAccessibilite();
+    	
+    	int nbrplaneteaccessible = Accessibilite.size();
+    	int nbrplanete = listPlanete.size();
+    	int[] indiceplaneteaccessible = new int[nbrplaneteaccessible];
+    	
+    	for (int i =0; i < nbrplaneteaccessible; i++) {
+    		for (int j =0; j < nbrplanete; j++) {
+    			if (Accessibilite.get(i)  == listPlanete.get(j)) {
+    				indiceplaneteaccessible[i]=j;
+    			}
+    		}
+    	}
+    	return indiceplaneteaccessible;
+    		
+    }
     
        
     private int[] bestRoad(double[][] distanceplanete, int x) {
@@ -120,11 +167,7 @@ public class Voyage extends AbstractVoyage {
     		while (a == 0) {
     			nouvelleplanete++;
     			a = distanceplanete[x][nouvelleplanete];
-    			System.out.println(a);
-    			System.out.print("------------");
     		}
-    		
-    		
     		
     		for (int j =0; j < nbrplanete; j++) {
     			if (distanceplanete[x][j]>0 && distanceplanete[x][j]<a) {
