@@ -81,9 +81,7 @@ public class Voyage extends AbstractVoyage {
     		goToPlanete(listPlanete.get(trajet[i]));
     		afficheEcran();
     	}
-
-    	
-    	}
+    }
     	
     private double[][] matricedistance() {
     	
@@ -220,7 +218,12 @@ public class Voyage extends AbstractVoyage {
     					a++;
     				}
     			}
-    	 		getSimulatedvoyageur().turnRight();
+    	 		if (b>0) {
+    	 			getSimulatedvoyageur().turnLeft();
+    	 		}
+    	 		else if (b<0) {
+    	 			getSimulatedvoyageur().turnRight();
+    	 		}
     	 		afficheEcran();
     	    	wait(700);
     			while (Math.abs(b)>0) {
@@ -254,7 +257,12 @@ public class Voyage extends AbstractVoyage {
     					a++;
     				}
     			}
-    	 		getSimulatedvoyageur().turnRight();
+    	 		if (b>0) {
+    	 			getSimulatedvoyageur().turnRight();
+    	 		}
+    	 		else if (b<0) {
+    	 			getSimulatedvoyageur().turnLeft();
+    	 		}
     	 		afficheEcran();
     	    	wait(700);
     			while (Math.abs(b)>0) {
@@ -288,7 +296,13 @@ public class Voyage extends AbstractVoyage {
     					b++;
     				}	
     			}
-    	 		getSimulatedvoyageur().turnRight();
+    	 		if (a>0) {
+    	 			getSimulatedvoyageur().turnRight();
+    	 		}
+    	 		else if (a<0) {
+    	 			getSimulatedvoyageur().turnLeft();
+    	 		}
+    	 		
     	 		afficheEcran();
     	    	wait(700);
     	 		while (Math.abs(a)>0) {
@@ -322,7 +336,13 @@ public class Voyage extends AbstractVoyage {
     					b++;
     				} 	
     			}
-    	 		getSimulatedvoyageur().turnRight();
+    	 		if (a>0) {
+    	 			getSimulatedvoyageur().turnLeft();
+    	 		}
+    	 		else if (a<0) {
+    	 			getSimulatedvoyageur().turnRight();
+    	 		}
+    	 		
     	 		afficheEcran();
     	    	wait(700);
     	 		while (Math.abs(a)>0) {
