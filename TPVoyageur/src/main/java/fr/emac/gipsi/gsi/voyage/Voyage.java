@@ -66,21 +66,32 @@ public class Voyage extends AbstractVoyage {
     public void lancementSimuler() {
         // TODO Auto-generated method stub
  
-    	int nbrplanete = listPlanete.size();
-		afficheEcran();
+    	/*int nbrplanete = listPlanete.size();
+		 *afficheEcran();
 		
 
-		int[] trajet;
-		double[][] distanceplanete;
+		 *int[] trajet;
+		 *double[][] distanceplanete;
 		
-		distanceplanete = matricedistance();
-		trajet = bestRoad(distanceplanete,0);
+		 *distanceplanete = matricedistance();
+		 *trajet = bestRoad(distanceplanete,0);
 		
-    	for (int i =0; i < nbrplanete; i++) {
+    	 *for (int i =0; i < nbrplanete; i++) {
     		wait(3000);
     		goToPlanete(listPlanete.get(trajet[i]));
+    		animationarrriversurplanete
+    		animationpourmontrelaplanete
     		afficheEcran();
+    		animationpourmontrerl'echantillon
+    		afficheEcran();
+    		animationpourpartirplanete
+    		
     	}
+    	*/
+    	
+    	afficheEcran();
+    	wait(1000);
+    	animationByColummn()
     }
     	
     private double[][] matricedistance() {
@@ -107,12 +118,6 @@ public class Voyage extends AbstractVoyage {
     		}
     	}
     	
-    	for (int i = 0; i < distanceplanete.length; i++) {
-    	      double[] ligne = distanceplanete[i];
-    	      for (int j = 0; j < ligne.length; j++) {
-    	        System.out.println(ligne[j]);
-    	      }
-    	}
     	
     	for (int i =0; i < nbrplanete; i++) {
     		listeaccessible = accessibilite(listPlanete.get(i));
