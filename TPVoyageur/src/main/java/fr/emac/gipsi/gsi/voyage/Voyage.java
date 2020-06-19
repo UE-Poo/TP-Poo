@@ -82,7 +82,7 @@ public class Voyage extends AbstractVoyage {
     		animationarrriversurplanete
     		animationpourmontrelaplanete
     		afficheEcran();
-    		animationpourmontrerl'echantillon
+    		animationpourmontrerl'echantillon sol/roche
     		afficheEcran();
     		animationpourpartirplanete
     		
@@ -157,6 +157,14 @@ public class Voyage extends AbstractVoyage {
        
     private int[] bestRoad(double[][] distanceplanete, int x) {
     	
+    	/* Faire à chaque planète un calcul comptant le nombre d'accessibilité de chaque planète d'ou l'on a accés à partir de cette planete
+    	 * Si il y a une acces d'une planète qui est égale à 1 (ça veut dire qu'on peut y aller que de cette planète) alors on y va et on reviens sur cette planète
+    	 * (sauf si c'est la dernière planète à visiter bien sur)
+    	 * Si pas de planète avec acces = 1 alors on choisit la planète la plus proche et toutes les planètes accessible depuis la planète de départ prennent -1 en acces
+    	 * Ensuite on réitère le même process sur chaque planète jusqu'a arrivé à la fin 
+    	 */
+    	
+    	double[][] distanceplanetedepannage = distanceplanete;
     	int nbrplanete = listPlanete.size();
     	int[] bestroad = new int[nbrplanete];
     	int nouvelleplanete;
