@@ -90,6 +90,7 @@ public class LaunchVoyage {
 		listPlanete.get(1).getListAccessibilite().remove(listPlanete.get(3));
 		listPlanete.get(1).getListAccessibilite().remove(listPlanete.get(4));
 
+
 		AbstractVoyageur simulatedVoyageur = new VoyageurSimuler(); // voyageur qui va faire le parcours
 
 		simulatedVoyageur.getPosTete().setX(listPlanete.get(0).getPos().getX());

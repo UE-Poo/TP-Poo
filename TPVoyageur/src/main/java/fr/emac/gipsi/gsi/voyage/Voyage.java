@@ -3,6 +3,9 @@
  */
 package fr.emac.gipsi.gsi.voyage;
 
+import fr.emac.gipsi.gsi.animation.AbstractAnimation;
+import fr.emac.gipsi.gsi.animation.AnimationByColumn;
+import fr.emac.gipsi.gsi.ecran.ListScreen;
 import fr.emac.gipsi.gsi.voyageur.AbstractVoyageur;
 
 import java.util.ArrayList;
@@ -65,33 +68,28 @@ public class Voyage extends AbstractVoyage {
     @Override
     public void lancementSimuler() {
         // TODO Auto-generated method stub
- 
-    	/*int nbrplanete = listPlanete.size();
-		 *afficheEcran();
-		
+    	
 
-		 *int[] trajet;
-		 *double[][] distanceplanete;
+    	int nbrplanete = listPlanete.size();
+		afficheEcran();
 		
-		 *distanceplanete = matricedistance();
-		 *trajet = bestRoad(distanceplanete,0);
+		ArrayList<Integer> Trajet= new ArrayList<Integer>();
+		double[][] distanceplanete;
 		
-    	 *for (int i =0; i < nbrplanete; i++) {
+		distanceplanete = matricedistance();		
+		Trajet = bestRoad(distanceplanete,0);
+		
+		for (int i =0; i < Trajet.size(); i++) {
+			System.out.println(Trajet.get(i));
+		}
+		
+    	for (int i =0; i < Trajet.size(); i++) {
     		wait(3000);
-    		goToPlanete(listPlanete.get(trajet[i]));
-    		animationarrriversurplanete
-    		animationpourmontrelaplanete
-    		afficheEcran();
-    		animationpourmontrerl'echantillon sol/roche
-    		afficheEcran();
-    		animationpourpartirplanete
+    		goToPlanete(listPlanete.get(Trajet.get(i)));   		
     		
     	}
-    	*/
-    	
-    	afficheEcran();
-    	wait(1000);
-    	animationByColummn()
+ 
+
     }
     	
     private double[][] matricedistance() {
@@ -121,13 +119,10 @@ public class Voyage extends AbstractVoyage {
     	
     	for (int i =0; i < nbrplanete; i++) {
     		listeaccessible = accessibilite(listPlanete.get(i));
-			
+    		
     		for(int j =0; j<listeaccessible.length;j++) {
-    			
     			k=listeaccessible[j];
-    			nouvelledistance[i][k] = distanceplanete[i][k];
     			nouvelledistance[k][i] = distanceplanete[i][k];
-    			
     			
     		}	
     	}
@@ -154,8 +149,24 @@ public class Voyage extends AbstractVoyage {
     		
     }
     
+    private int[] nbrePlaneteAccessibleparPlanete() {
+    	
+    	int nbrplanete = listPlanete.size();
+    	int[] nbraccesparplanete = new int[nbrplanete];
+    	int[] listeaccessible;
+    	
+    	
+    	for (int j =0; j < nbrplanete; j++) {
+    		listeaccessible = accessibilite(listPlanete.get(j));
+    		nbraccesparplanete[j] = listeaccessible.length;
+    	}
+    	return nbraccesparplanete;
+    }
+    
+    
+    
        
-    private int[] bestRoad(double[][] distanceplanete, int x) {
+    private ArrayList<Integer> bestRoad(double[][] distanceplanete, int x) {
     	
     	/* Faire à chaque planète un calcul comptant le nombre d'accessibilité de chaque planète d'ou l'on a accés à partir de cette planete
     	 * Si il y a une acces d'une planète qui est égale à 1 (ça veut dire qu'on peut y aller que de cette planète) alors on y va et on reviens sur cette planète
@@ -164,11 +175,33 @@ public class Voyage extends AbstractVoyage {
     	 * Ensuite on réitère le même process sur chaque planète jusqu'a arrivé à la fin 
     	 */
     	
-    	double[][] distanceplanetedepannage = distanceplanete;
+    	
+    	/*
+    	 * 
+    	 * 
+    	 * 
+    	 * 
+    	 * looooooooooooooollllllcskqol,ckj,fqpl
+    	 * dqj,slkdj,lqksdkj
+    	 * dpklqs,jlmkd,qpsol
+    	 * d;mlqs,ml
+    	 * d,qspl,dm
+    	 * dqlk^kdl$
+    	 * ,dqmslk
+    	 * 
+    	 * 
+    	 * 
+    	 */
+    	
+    	ArrayList<Integer> Trajet= new ArrayList<Integer>();
+    	Trajet.add(x);
+    	
     	int nbrplanete = listPlanete.size();
-    	int[] bestroad = new int[nbrplanete];
     	int nouvelleplanete;
-    	bestroad[0] = x;
+
+    	
+    	int[] nbraccesparplanete = nbrePlaneteAccessibleparPlanete();
+    	boolean nonarret = true;
     	    	
     	for (int i =0; i < nbrplanete-1; i++) {
     		
@@ -179,22 +212,42 @@ public class Voyage extends AbstractVoyage {
     			nouvelleplanete++;
     			a = distanceplanete[x][nouvelleplanete];
     		}
-    		
-    		for (int j =0; j < nbrplanete; j++) {
-    			if (distanceplanete[x][j]>0 && distanceplanete[x][j]<a) {
-    				
-    				 a = distanceplanete[x][j];
-    				 nouvelleplanete= j;
-    			}
-    		}
-    		for (int h =0; h < nbrplanete; h++) {
-    			distanceplanete[h][x] = 0 ;
-    		}
-    		x = nouvelleplanete;
-    		bestroad[i+1] = x ;
 
+    		for (int j =0; j < nbrplanete; j++) {
+    			
+    			if (distanceplanete[x][j] != 0) {
+
+    				if (nbraccesparplanete[j] == 1) {
+						Trajet.add(j);				
+						for (int h =0; h < nbrplanete; h++) {
+							distanceplanete[h][j] = 0 ;
+						}
+						nonarret = false;
+						nbraccesparplanete[j]--;
+						break;
+					}
+					nbraccesparplanete[j]--;
+					
+					if (distanceplanete[x][j]<a) {
+	    				 a = distanceplanete[x][j];
+	    				 nouvelleplanete= j;
+	    				 
+					}
+					nonarret = true;				
+    			}
+    			
+    		}
+    		    		    		
+    		if (nonarret) {    			
+    			for (int h =0; h < nbrplanete; h++) {
+        			distanceplanete[h][x] = 0 ;
+        		}
+    			x = nouvelleplanete;
+    		}
+    		
+    		Trajet.add(x);
     	}
-    	return bestroad;
+    	return Trajet;
     }
    
     
@@ -213,7 +266,6 @@ public class Voyage extends AbstractVoyage {
     	
     	int a = xb - px;
  		int b = yb - py;
-    	
     	
     	switch (directionactuelle) {
     	 	case "N":
@@ -241,7 +293,7 @@ public class Voyage extends AbstractVoyage {
     	    	wait(700);
     			while (Math.abs(b)>0) {
     				if (b>0) {
-    					getSimulatedvoyageur().goBackward();
+    					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
     					b--;
@@ -278,6 +330,7 @@ public class Voyage extends AbstractVoyage {
     	 		}
     	 		afficheEcran();
     	    	wait(700);
+    	    	
     			while (Math.abs(b)>0) {
     				if (b>0) {
     					getSimulatedvoyageur().goForward();
@@ -286,7 +339,7 @@ public class Voyage extends AbstractVoyage {
     					b--;
     				}
     				else {
-    					getSimulatedvoyageur().goBackward();
+    					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
     					b++;
@@ -326,7 +379,7 @@ public class Voyage extends AbstractVoyage {
     					a--;
     				}
     				else {
-    					getSimulatedvoyageur().goBackward();
+    					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
     					a++;
@@ -360,7 +413,7 @@ public class Voyage extends AbstractVoyage {
     	    	wait(700);
     	 		while (Math.abs(a)>0) {
     				if (a>0) {
-    					getSimulatedvoyageur().goBackward();
+    					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
     					a--;
