@@ -44,7 +44,7 @@ public class AnimationFlash extends AbstractAnimation {
 		// TODO Auto-generated method stub
 		ecranInt=copyScreen(ecranDeb);
 		showScreen(ecranInt);
-		wait(1000);
+		wait(100);
 		ecranInt=copyScreen(ecranFin);
 		showScreen(ecranInt);
 	}

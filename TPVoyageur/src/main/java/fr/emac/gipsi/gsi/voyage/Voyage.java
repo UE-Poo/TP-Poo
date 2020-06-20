@@ -5,6 +5,7 @@ package fr.emac.gipsi.gsi.voyage;
 
 import fr.emac.gipsi.gsi.animation.AbstractAnimation;
 import fr.emac.gipsi.gsi.animation.AnimationByColumn;
+import fr.emac.gipsi.gsi.animation.AnimationFlash;
 import fr.emac.gipsi.gsi.ecran.ListScreen;
 import fr.emac.gipsi.gsi.voyageur.AbstractVoyageur;
 
@@ -69,6 +70,7 @@ public class Voyage extends AbstractVoyage {
     public void lancementSimuler() {
         // TODO Auto-generated method stub
     	
+		
 
     	int nbrplanete = listPlanete.size();
 		afficheEcran();
@@ -79,13 +81,179 @@ public class Voyage extends AbstractVoyage {
 		distanceplanete = matricedistance();		
 		Trajet = bestRoad(distanceplanete,0);
 		
-		for (int i =0; i < Trajet.size(); i++) {
-			System.out.println(Trajet.get(i));
-		}
-		
+		int[] dejavisite = new int[Trajet.size()];
+		boolean pasencorevu = true;
+			
     	for (int i =0; i < Trajet.size(); i++) {
-    		wait(3000);
-    		goToPlanete(listPlanete.get(Trajet.get(i)));   		
+    		
+    		if (i==0) {
+    			wait(3000);
+    			goToPlanete(listPlanete.get(Trajet.get(i)));
+    			
+    			/* Animation prise de photo de la planète */
+    			AbstractAnimation ab = new AnimationFlash();
+        		ab.setEcranDeb(ListScreen.Pixar1());
+        		ab.setEcranFin(ListScreen.Pixar2());
+        		ab.runAnimation();        		
+        		ab.wait(300);        		
+        		AbstractAnimation ac = new AnimationFlash();
+        		ac.setEcranDeb(ListScreen.Pixar2());
+        		ac.setEcranFin(ListScreen.Pixar3());
+        		ac.runAnimation();
+        		ac.wait(300);        		
+        		AbstractAnimation ad = new AnimationFlash();
+        		ad.setEcranDeb(ListScreen.Pixar3());
+        		ad.setEcranFin(ListScreen.Pixar4());
+        		ad.runAnimation();        		
+        		ad.wait(300);        		
+        		AbstractAnimation ae = new AnimationFlash();
+        		ae.setEcranDeb(ListScreen.Pixar4());
+        		ae.setEcranFin(ListScreen.Pixar5());
+        		ae.runAnimation();        		
+        		ae.wait(300);        		
+        		AbstractAnimation af = new AnimationFlash();
+        		af.setEcranDeb(ListScreen.Pixar5());
+        		af.setEcranFin(ListScreen.Pixar6());
+        		af.runAnimation();
+        		af.wait(300);        		
+        		AbstractAnimation ag = new AnimationFlash();
+        		ag.setEcranDeb(ListScreen.Pixar6());
+        		ag.setEcranFin(ListScreen.Pixar7());
+        		ag.runAnimation();        		
+        		ag.wait(300);
+        		AbstractAnimation ah = new AnimationFlash();
+        		ah.setEcranDeb(ListScreen.Pixar6());
+        		ah.setEcranFin(listPlanete.get(Trajet.get(i)).getImage());
+        		ah.runAnimation();        		
+        		ah.wait(1000);
+        		
+        		
+        		/*Animation de prise d'échantillon */
+        		AbstractAnimation b = new AnimationFlash();
+        		b.setEcranDeb(ListScreen.Pince1()); 
+        		b.setEcranFin(ListScreen.Pince2()); 
+        		b.runAnimation();
+        		b.wait(300); 
+        		AbstractAnimation c = new AnimationFlash(); 
+        		c.setEcranDeb(ListScreen.Pince2()); 
+        		c.setEcranFin(ListScreen.Pince3()); 
+        		c.runAnimation(); 
+        		c.wait(300); 
+        		AbstractAnimation d = new AnimationFlash(); 
+        		d.setEcranDeb(ListScreen.Pince3()); 
+        		d.setEcranFin(ListScreen.Pince4()); 
+        		d.runAnimation();
+        		d.wait(300); 
+        		AbstractAnimation e = new AnimationFlash(); 
+        		e.setEcranDeb(ListScreen.Pince4()); 
+        		e.setEcranFin(ListScreen.Pince5()); 
+        		e.runAnimation();
+        		e.wait(300); 
+        		AbstractAnimation f = new AnimationFlash(); 
+        		f.setEcranDeb(ListScreen.Pince5()); 
+        		f.setEcranFin(ListScreen.Pince6()); 
+        		f.runAnimation(); 
+        		f.wait(300);
+        		
+        		
+        		dejavisite[i]=Trajet.get(i);
+        		       		
+        		
+        		
+    		}
+    		
+    		if (i !=0) {
+    			wait(3000);
+    			goToPlanete(listPlanete.get(Trajet.get(i)));
+    			
+    			for(int j=0; j<nbrplanete;j++) {
+    				if (dejavisite[j] == Trajet.get(i)) {
+    					pasencorevu=false;
+    					break;
+    				}
+    				else {
+    					pasencorevu =true;
+    				}
+    			}
+    			if(pasencorevu) {
+    				/* Animation prise de photo de la planète */
+        			AbstractAnimation ab = new AnimationFlash();
+            		ab.setEcranDeb(ListScreen.Pixar1());
+            		ab.setEcranFin(ListScreen.Pixar2());
+            		ab.runAnimation();        		
+            		ab.wait(300);        		
+            		AbstractAnimation ac = new AnimationFlash();
+            		ac.setEcranDeb(ListScreen.Pixar2());
+            		ac.setEcranFin(ListScreen.Pixar3());
+            		ac.runAnimation();
+            		ac.wait(300);        		
+            		AbstractAnimation ad = new AnimationFlash();
+            		ad.setEcranDeb(ListScreen.Pixar3());
+            		ad.setEcranFin(ListScreen.Pixar4());
+            		ad.runAnimation();        		
+            		ad.wait(300);        		
+            		AbstractAnimation ae = new AnimationFlash();
+            		ae.setEcranDeb(ListScreen.Pixar4());
+            		ae.setEcranFin(ListScreen.Pixar5());
+            		ae.runAnimation();        		
+            		ae.wait(300);        		
+            		AbstractAnimation af = new AnimationFlash();
+            		af.setEcranDeb(ListScreen.Pixar5());
+            		af.setEcranFin(ListScreen.Pixar6());
+            		af.runAnimation();
+            		af.wait(300);        		
+            		AbstractAnimation ag = new AnimationFlash();
+            		ag.setEcranDeb(ListScreen.Pixar6());
+            		ag.setEcranFin(ListScreen.Pixar7());
+            		ag.runAnimation();        		
+            		ag.wait(300);
+            		AbstractAnimation ah = new AnimationFlash();
+            		ah.setEcranDeb(ListScreen.Pixar6());
+            		ah.setEcranFin(listPlanete.get(Trajet.get(i)).getImage());
+            		ah.runAnimation();        		
+            		ah.wait(1000);
+            		wait(1000);
+            		
+            		
+            		/*Animation de prise d'échantillon */
+            		AbstractAnimation b = new AnimationFlash();
+            		b.setEcranDeb(ListScreen.Pince1()); 
+            		b.setEcranFin(ListScreen.Pince2()); 
+            		b.runAnimation();
+            		b.wait(300); 
+            		AbstractAnimation c = new AnimationFlash(); 
+            		c.setEcranDeb(ListScreen.Pince2()); 
+            		c.setEcranFin(ListScreen.Pince3()); 
+            		c.runAnimation(); 
+            		c.wait(300); 
+            		AbstractAnimation d = new AnimationFlash(); 
+            		d.setEcranDeb(ListScreen.Pince3()); 
+            		d.setEcranFin(ListScreen.Pince4()); 
+            		d.runAnimation();
+            		d.wait(300); 
+            		AbstractAnimation e = new AnimationFlash(); 
+            		e.setEcranDeb(ListScreen.Pince4()); 
+            		e.setEcranFin(ListScreen.Pince5()); 
+            		e.runAnimation();
+            		e.wait(300); 
+            		AbstractAnimation f = new AnimationFlash(); 
+            		f.setEcranDeb(ListScreen.Pince5()); 
+            		f.setEcranFin(ListScreen.Pince6()); 
+            		f.runAnimation(); 
+            		f.wait(300);
+            		
+            		wait(1000);
+            		
+            		
+    	    		dejavisite[i]=Trajet.get(i);
+    			
+    				
+    			}
+    		}
+    		
+    		
+    		
+    		
     		
     	}
  
