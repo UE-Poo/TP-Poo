@@ -70,8 +70,6 @@ public class Voyage extends AbstractVoyage {
     public void lancementSimuler() {
         // TODO Auto-generated method stub
     	
-		
-
     	int nbrplanete = listPlanete.size();
 		afficheEcran();
 		
@@ -122,39 +120,90 @@ public class Voyage extends AbstractVoyage {
         		ag.runAnimation();        		
         		ag.wait(300);
         		AbstractAnimation ah = new AnimationFlash();
-        		ah.setEcranDeb(ListScreen.Pixar6());
+        		ah.setEcranDeb(ListScreen.Pixar7());
         		ah.setEcranFin(listPlanete.get(Trajet.get(i)).getImage());
         		ah.runAnimation();        		
         		ah.wait(1000);
+        		getSimulatedvoyageur().takePicture(listPlanete.get(Trajet.get(i)));
         		
         		
-        		/*Animation de prise d'échantillon */
-        		AbstractAnimation b = new AnimationFlash();
-        		b.setEcranDeb(ListScreen.Pince1()); 
-        		b.setEcranFin(ListScreen.Pince2()); 
-        		b.runAnimation();
-        		b.wait(300); 
-        		AbstractAnimation c = new AnimationFlash(); 
-        		c.setEcranDeb(ListScreen.Pince2()); 
-        		c.setEcranFin(ListScreen.Pince3()); 
-        		c.runAnimation(); 
-        		c.wait(300); 
-        		AbstractAnimation d = new AnimationFlash(); 
-        		d.setEcranDeb(ListScreen.Pince3()); 
-        		d.setEcranFin(ListScreen.Pince4()); 
-        		d.runAnimation();
-        		d.wait(300); 
-        		AbstractAnimation e = new AnimationFlash(); 
-        		e.setEcranDeb(ListScreen.Pince4()); 
-        		e.setEcranFin(ListScreen.Pince5()); 
-        		e.runAnimation();
-        		e.wait(300); 
-        		AbstractAnimation f = new AnimationFlash(); 
-        		f.setEcranDeb(ListScreen.Pince5()); 
-        		f.setEcranFin(ListScreen.Pince6()); 
-        		f.runAnimation(); 
-        		f.wait(300);
+        		/*Animation de prise d'échantillon Roche */
+        		if (listPlanete.get(Trajet.get(i)).getEchantillonRoche() == null) {
+            		System.out.println("Il n'y a pas d'échantillon de roche");
+            	}
         		
+        		else {
+        			AbstractAnimation b = new AnimationFlash();
+            		b.setEcranDeb(ListScreen.Pince1()); 
+            		b.setEcranFin(ListScreen.Pince2()); 
+            		b.runAnimation();
+            		b.wait(300); 
+            		AbstractAnimation c = new AnimationFlash(); 
+            		c.setEcranDeb(ListScreen.Pince2()); 
+            		c.setEcranFin(ListScreen.Pince3()); 
+            		c.runAnimation(); 
+            		c.wait(300); 
+            		AbstractAnimation d = new AnimationFlash(); 
+            		d.setEcranDeb(ListScreen.Pince3()); 
+            		d.setEcranFin(ListScreen.Pince4()); 
+            		d.runAnimation();
+            		d.wait(300); 
+            		AbstractAnimation e = new AnimationFlash(); 
+            		e.setEcranDeb(ListScreen.Pince4()); 
+            		e.setEcranFin(ListScreen.Pince5()); 
+            		e.runAnimation();
+            		e.wait(300); 
+            		AbstractAnimation f = new AnimationFlash(); 
+            		f.setEcranDeb(ListScreen.Pince5()); 
+            		f.setEcranFin(ListScreen.Pince6()); 
+            		f.runAnimation(); 
+            		f.wait(300);
+            		AbstractAnimation h = new AnimationFlash();
+            		h.setEcranDeb(ListScreen.Pince6());
+            		h.setEcranFin(listPlanete.get(Trajet.get(i)).getEchantillonRoche());
+            		h.runAnimation();        		
+            		h.wait(1000);
+            		getSimulatedvoyageur().takeEchantillonRoche(listPlanete.get(Trajet.get(i)));
+        		}
+        		
+        		/*Animation de prise d'échantillon Sol*/
+        		if (listPlanete.get(Trajet.get(i)).getEchantillonSol() == null) {
+            		System.out.println("Il n'y a pas d'échantillon de sol");
+            	}
+        		
+        		else {
+        			AbstractAnimation b = new AnimationFlash();
+            		b.setEcranDeb(ListScreen.Pince1()); 
+            		b.setEcranFin(ListScreen.Pince2()); 
+            		b.runAnimation();
+            		b.wait(300); 
+            		AbstractAnimation c = new AnimationFlash(); 
+            		c.setEcranDeb(ListScreen.Pince2()); 
+            		c.setEcranFin(ListScreen.Pince3()); 
+            		c.runAnimation(); 
+            		c.wait(300); 
+            		AbstractAnimation d = new AnimationFlash(); 
+            		d.setEcranDeb(ListScreen.Pince3()); 
+            		d.setEcranFin(ListScreen.Pince4()); 
+            		d.runAnimation();
+            		d.wait(300); 
+            		AbstractAnimation e = new AnimationFlash(); 
+            		e.setEcranDeb(ListScreen.Pince4()); 
+            		e.setEcranFin(ListScreen.Pince5()); 
+            		e.runAnimation();
+            		e.wait(300); 
+            		AbstractAnimation f = new AnimationFlash(); 
+            		f.setEcranDeb(ListScreen.Pince5()); 
+            		f.setEcranFin(ListScreen.Pince6()); 
+            		f.runAnimation(); 
+            		f.wait(300);
+            		AbstractAnimation h = new AnimationFlash();
+            		h.setEcranDeb(ListScreen.Pince6());
+            		h.setEcranFin(listPlanete.get(Trajet.get(i)).getEchantillonSol());
+            		h.runAnimation();        		
+            		h.wait(1000);
+            		getSimulatedvoyageur().takeEchantillonSol(listPlanete.get(Trajet.get(i)));
+        		}
         		
         		dejavisite[i]=Trajet.get(i);
         		       		
@@ -208,46 +257,97 @@ public class Voyage extends AbstractVoyage {
             		ag.runAnimation();        		
             		ag.wait(300);
             		AbstractAnimation ah = new AnimationFlash();
-            		ah.setEcranDeb(ListScreen.Pixar6());
+            		ah.setEcranDeb(ListScreen.Pixar7());
             		ah.setEcranFin(listPlanete.get(Trajet.get(i)).getImage());
             		ah.runAnimation();        		
             		ah.wait(1000);
             		wait(1000);
+            		getSimulatedvoyageur().takePicture(listPlanete.get(Trajet.get(i)));
             		
             		
-            		/*Animation de prise d'échantillon */
-            		AbstractAnimation b = new AnimationFlash();
-            		b.setEcranDeb(ListScreen.Pince1()); 
-            		b.setEcranFin(ListScreen.Pince2()); 
-            		b.runAnimation();
-            		b.wait(300); 
-            		AbstractAnimation c = new AnimationFlash(); 
-            		c.setEcranDeb(ListScreen.Pince2()); 
-            		c.setEcranFin(ListScreen.Pince3()); 
-            		c.runAnimation(); 
-            		c.wait(300); 
-            		AbstractAnimation d = new AnimationFlash(); 
-            		d.setEcranDeb(ListScreen.Pince3()); 
-            		d.setEcranFin(ListScreen.Pince4()); 
-            		d.runAnimation();
-            		d.wait(300); 
-            		AbstractAnimation e = new AnimationFlash(); 
-            		e.setEcranDeb(ListScreen.Pince4()); 
-            		e.setEcranFin(ListScreen.Pince5()); 
-            		e.runAnimation();
-            		e.wait(300); 
-            		AbstractAnimation f = new AnimationFlash(); 
-            		f.setEcranDeb(ListScreen.Pince5()); 
-            		f.setEcranFin(ListScreen.Pince6()); 
-            		f.runAnimation(); 
-            		f.wait(300);
             		
-            		wait(1000);
+            		/*Animation de prise d'échantillon Roche*/
+            		if (listPlanete.get(Trajet.get(i)).getEchantillonRoche() == null) {
+                		System.out.println("Il n'y a pas d'échantillon de roche");
+                	}
+            		
+            		else {
+            			AbstractAnimation b = new AnimationFlash();
+                		b.setEcranDeb(ListScreen.Pince1()); 
+                		b.setEcranFin(ListScreen.Pince2()); 
+                		b.runAnimation();
+                		b.wait(300); 
+                		AbstractAnimation c = new AnimationFlash(); 
+                		c.setEcranDeb(ListScreen.Pince2()); 
+                		c.setEcranFin(ListScreen.Pince3()); 
+                		c.runAnimation(); 
+                		c.wait(300); 
+                		AbstractAnimation d = new AnimationFlash(); 
+                		d.setEcranDeb(ListScreen.Pince3()); 
+                		d.setEcranFin(ListScreen.Pince4()); 
+                		d.runAnimation();
+                		d.wait(300); 
+                		AbstractAnimation e = new AnimationFlash(); 
+                		e.setEcranDeb(ListScreen.Pince4()); 
+                		e.setEcranFin(ListScreen.Pince5()); 
+                		e.runAnimation();
+                		e.wait(300); 
+                		AbstractAnimation f = new AnimationFlash(); 
+                		f.setEcranDeb(ListScreen.Pince5()); 
+                		f.setEcranFin(ListScreen.Pince6()); 
+                		f.runAnimation(); 
+                		f.wait(300);
+                		AbstractAnimation h = new AnimationFlash();
+                		h.setEcranDeb(ListScreen.Pince6());
+                		h.setEcranFin(listPlanete.get(Trajet.get(i)).getEchantillonRoche());
+                		h.runAnimation();        		
+                		h.wait(1000);
+                		getSimulatedvoyageur().takeEchantillonRoche(listPlanete.get(Trajet.get(i)));
+            		}
+            		
+            		
+            		/*Animation de prise d'échantillon Sol*/
+            		if (listPlanete.get(Trajet.get(i)).getEchantillonSol() == null) {
+                		System.out.println("Il n'y a pas d'échantillon de sol");
+                	}
+            		
+            		else {
+            			AbstractAnimation b = new AnimationFlash();
+                		b.setEcranDeb(ListScreen.Pince1()); 
+                		b.setEcranFin(ListScreen.Pince2()); 
+                		b.runAnimation();
+                		b.wait(300); 
+                		AbstractAnimation c = new AnimationFlash(); 
+                		c.setEcranDeb(ListScreen.Pince2()); 
+                		c.setEcranFin(ListScreen.Pince3()); 
+                		c.runAnimation(); 
+                		c.wait(300); 
+                		AbstractAnimation d = new AnimationFlash(); 
+                		d.setEcranDeb(ListScreen.Pince3()); 
+                		d.setEcranFin(ListScreen.Pince4()); 
+                		d.runAnimation();
+                		d.wait(300); 
+                		AbstractAnimation e = new AnimationFlash(); 
+                		e.setEcranDeb(ListScreen.Pince4()); 
+                		e.setEcranFin(ListScreen.Pince5()); 
+                		e.runAnimation();
+                		e.wait(300); 
+                		AbstractAnimation f = new AnimationFlash(); 
+                		f.setEcranDeb(ListScreen.Pince5()); 
+                		f.setEcranFin(ListScreen.Pince6()); 
+                		f.runAnimation(); 
+                		f.wait(300);
+                		AbstractAnimation h = new AnimationFlash();
+                		h.setEcranDeb(ListScreen.Pince6());
+                		h.setEcranFin(listPlanete.get(Trajet.get(i)).getEchantillonSol());
+                		h.runAnimation();        		
+                		h.wait(1000);
+                		getSimulatedvoyageur().takeEchantillonSol(listPlanete.get(Trajet.get(i)));
+            		}
             		
             		
     	    		dejavisite[i]=Trajet.get(i);
-    			
-    				
+    			    				
     			}
     		}
     		
@@ -256,9 +356,10 @@ public class Voyage extends AbstractVoyage {
     		
     		
     	}
- 
-
+    	wait(10000);
+    	int m = 1+1;
     }
+ 
     	
     private double[][] matricedistance() {
     	
@@ -335,32 +436,7 @@ public class Voyage extends AbstractVoyage {
     
        
     private ArrayList<Integer> bestRoad(double[][] distanceplanete, int x) {
-    	
-    	/* Faire à chaque planète un calcul comptant le nombre d'accessibilité de chaque planète d'ou l'on a accés à partir de cette planete
-    	 * Si il y a une acces d'une planète qui est égale à 1 (ça veut dire qu'on peut y aller que de cette planète) alors on y va et on reviens sur cette planète
-    	 * (sauf si c'est la dernière planète à visiter bien sur)
-    	 * Si pas de planète avec acces = 1 alors on choisit la planète la plus proche et toutes les planètes accessible depuis la planète de départ prennent -1 en acces
-    	 * Ensuite on réitère le même process sur chaque planète jusqu'a arrivé à la fin 
-    	 */
-    	
-    	
-    	/*
-    	 * 
-    	 * 
-    	 * 
-    	 * 
-    	 * looooooooooooooollllllcskqol,ckj,fqpl
-    	 * dqj,slkdj,lqksdkj
-    	 * dpklqs,jlmkd,qpsol
-    	 * d;mlqs,ml
-    	 * d,qspl,dm
-    	 * dqlk^kdl$
-    	 * ,dqmslk
-    	 * 
-    	 * 
-    	 * 
-    	 */
-    	
+   	
     	ArrayList<Integer> Trajet= new ArrayList<Integer>();
     	Trajet.add(x);
     	
@@ -439,12 +515,46 @@ public class Voyage extends AbstractVoyage {
     	 	case "N":
     	 		while (Math.abs(a)>0) {
     				if (a>0) {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
     					a--;
     				}
     				else {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
     					getSimulatedvoyageur().goBackward();
     					afficheEcran();
     			    	wait(700);
@@ -461,12 +571,46 @@ public class Voyage extends AbstractVoyage {
     	    	wait(700);
     			while (Math.abs(b)>0) {
     				if (b>0) {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
     					b--;
     				}
     				else {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
@@ -478,12 +622,68 @@ public class Voyage extends AbstractVoyage {
     	 	case "S":
     	 		while (Math.abs(a)>0) {
     				if (a>0) {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
     					getSimulatedvoyageur().goBackward();
     					afficheEcran();
     			    	wait(700);
     					a--;
     				}
     				else {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
@@ -491,6 +691,35 @@ public class Voyage extends AbstractVoyage {
     				}
     			}
     	 		if (b>0) {
+    	 			AbstractAnimation na = new AnimationFlash();
+        			na.setEcranDeb(ListScreen.Vaisseau());
+        			na.setEcranFin(ListScreen.Vaisseau2());
+        			na.runAnimation();
+        			na.wait(100);
+
+        			AbstractAnimation nb = new AnimationFlash();
+        			nb.setEcranDeb(ListScreen.Vaisseau2());
+        			nb.setEcranFin(ListScreen.Vaisseau());
+        			nb.runAnimation();
+        			nb.wait(100);
+        			
+        			na.runAnimation();
+        			na.wait(100);
+
+        			nb.runAnimation();
+        			nb.wait(100);
+
+        			na.runAnimation();
+	    			na.wait(100);
+
+	    			nb.runAnimation();
+	    			nb.wait(100);
+	    			na.runAnimation();
+	    			na.wait(100);
+
+	    			nb.runAnimation();
+	    			nb.wait(100);
+	    			
     	 			getSimulatedvoyageur().turnRight();
     	 		}
     	 		else if (b<0) {
@@ -501,12 +730,69 @@ public class Voyage extends AbstractVoyage {
     	    	
     			while (Math.abs(b)>0) {
     				if (b>0) {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
     					b--;
     				}
     				else {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
@@ -518,12 +804,68 @@ public class Voyage extends AbstractVoyage {
     	 	case "O":
     	 		while (Math.abs(b)>0) {
     				if (b>0) {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
     					b--;
     				}
     				else {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
     					getSimulatedvoyageur().goBackward();
     					afficheEcran();
     			    	wait(700);
@@ -541,12 +883,70 @@ public class Voyage extends AbstractVoyage {
     	    	wait(700);
     	 		while (Math.abs(a)>0) {
     				if (a>0) {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
     					a--;
     				}
     				else {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
@@ -558,12 +958,69 @@ public class Voyage extends AbstractVoyage {
     	 	case "E":
     	 		while (Math.abs(b)>0) {
     				if (b>0) {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
     					getSimulatedvoyageur().goBackward();
     					afficheEcran();
     			    	wait(700);
     					b--;
     				}
     				else {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
@@ -581,12 +1038,69 @@ public class Voyage extends AbstractVoyage {
     	    	wait(700);
     	 		while (Math.abs(a)>0) {
     				if (a>0) {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
     					a--;
     				}
     				else {
+    					AbstractAnimation na = new AnimationFlash();
+    	    			na.setEcranDeb(ListScreen.Vaisseau());
+    	    			na.setEcranFin(ListScreen.Vaisseau2());
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			AbstractAnimation nb = new AnimationFlash();
+    	    			nb.setEcranDeb(ListScreen.Vaisseau2());
+    	    			nb.setEcranFin(ListScreen.Vaisseau());
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
+    	    			
+    	    			na.runAnimation();
+    	    			na.wait(100);
+
+    	    			nb.runAnimation();
+    	    			nb.wait(100);
     					getSimulatedvoyageur().goForward();
     					afficheEcran();
     			    	wait(700);
